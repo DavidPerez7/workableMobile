@@ -1,0 +1,40 @@
+# Maven
+/target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# IntelliJ
+*.iml
+.idea/
+out/
+
+# VS Code
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Environment
+.env
+
+# Java
+*.class
+
+# Others
+*.swp
+*.swo
+
+# Database
+*.db
+*.sqlite
+
+# Application properties (optional, if you want to keep secrets local)
+application.properties
