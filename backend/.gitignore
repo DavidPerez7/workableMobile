@@ -35,6 +35,3 @@ Thumbs.db
 # Database
 *.db
 *.sqlite
-
-# Application properties (optional, if you want to keep secrets local)
-application.properties
