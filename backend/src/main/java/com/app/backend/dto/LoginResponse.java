@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 public class LoginResponse {
-    private String toke;
+    private String token;
     private String type = "Bearer";
     private Long id;
     private String username;
