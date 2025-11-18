@@ -37,7 +37,7 @@ public class UserService {
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         user.setEmail(request.getEmail());
         user.setRole(request.getRole());
-        user.setActive(request.getIsActive() != null ? request.getIsActive() : true);
+        user.setActive(request.getActive() != null ? request.getActive() : true);
 
         return userRepository.save(user);
     }
@@ -53,7 +53,7 @@ public class UserService {
         user.setUsername(request.getUsername());
         user.setEmail(request.getEmail());
         user.setRole(request.getRole());
-        user.setActive(request.getIsActive());
+        user.setActive(request.getActive());
 
         if (request.getPassword() != null && !request.getPassword().isEmpty()) {
             user.setPassword(passwordEncoder.encode(request.getPassword()));
@@ -64,10 +64,9 @@ public class UserService {
 
     private boolean isCoordinator() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-
         if (authentication != null && authentication.getAuthorities() != null) {
             return authentication.getAuthorities().stream()
-            .anyMatch(auth -> auth.getAuthority().equals("ROLE_COORDINATOR"));
+                .anyMatch(auth -> auth.getAuthority().equals("ROLE_COORDINADOR"));
         }
         return false;
     }

@@ -4,17 +4,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.app.backend.models.Category;
 import com.app.backend.models.Subcategory;
-import com.app.backend.repository.CategoryRepository;
 import com.app.backend.repository.SubcategoryRepository;
 
 @Service
 public class SubCategoryService {
-
-    @Autowired
-    private CategoryRepository categoryRepository;
     
     @Autowired
     private SubcategoryRepository subcategoryRepository;

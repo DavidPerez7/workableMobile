@@ -1,10 +1,11 @@
 package com.app.backend.models;
 
 import java.util.List;
-import java.util.Locale.Category;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import com.app.backend.models.Category;
+import com.app.backend.models.Product;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
