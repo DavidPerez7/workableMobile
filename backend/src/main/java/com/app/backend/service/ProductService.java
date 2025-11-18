@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.app.backend.models.Category;
 import com.app.backend.models.Product;
+import com.app.backend.models.Subcategory;
 import com.app.backend.repository.ProductRepository;
 
 @Service
@@ -13,6 +15,12 @@ public class ProductService {
     
     @Autowired
     private ProductRepository productRepository;
+
+    @Autowired
+    private SubCategoryService subCategoryService;
+
+    @Autowired
+    private CategoryService categoryService;
 
     public List<Product> findAll() {
         return productRepository.findAll();
@@ -30,8 +38,12 @@ public class ProductService {
         return productRepository.findBySubcategoryId(subcategoryId);
     }
 
-    public Product create(Product product) {
-        return productRepository.save(product);
+    public Product create(Product request) {
+        Subcategory subcategory = subCategoryService.findById(request.getSubcategory().getId());
+        Category category = categoryService.findById(request.getCategory().getId());
+        request.setSubcategory(subcategory);
+        request.setCategory(category);
+        return productRepository.save(request);
     }
 
     public Product update(Long id, Product productDetails) {

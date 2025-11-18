@@ -4,14 +4,20 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.app.backend.models.Category;
 import com.app.backend.models.Subcategory;
 import com.app.backend.repository.SubcategoryRepository;
+
 
 @Service
 public class SubCategoryService {
     
     @Autowired
     private SubcategoryRepository subcategoryRepository;
+
+    @Autowired
+    private CategoryService categoryService;
 
     public List<Subcategory> findAll() {
         return subcategoryRepository.findAll();
@@ -25,8 +31,10 @@ public class SubCategoryService {
         return subcategoryRepository.findById(id).orElseThrow(() -> new RuntimeException("Subcategoría no encontrada"));
     }
 
-    public Subcategory create(Subcategory subcategory) {
-        return subcategoryRepository.save(subcategory);
+    public Subcategory create(Subcategory request) {
+        Category category = categoryService.findById(request.getCategory().getId());
+        request.setCategory(category);
+        return subcategoryRepository.save(request);
     }
 
     public Subcategory update(Long id, Subcategory subcategoryDetails) {
