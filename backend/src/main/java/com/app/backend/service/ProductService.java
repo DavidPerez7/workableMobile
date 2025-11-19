@@ -46,14 +46,16 @@ public class ProductService {
         return productRepository.save(request);
     }
 
-    public Product update(Long id, Product productDetails) {
+    public Product update(Long id, Product request) {
         Product product = findById(id);
-        product.setName(productDetails.getName());
-        product.setDescription(productDetails.getDescription());
-        product.setPrice(productDetails.getPrice());
-        product.setActive(productDetails.getActive());
-        product.setCategory(productDetails.getCategory());
-        product.setSubcategory(productDetails.getSubcategory());
+        product.setName(request.getName());
+        product.setDescription(request.getDescription());
+        product.setPrice(request.getPrice());
+        product.setActive(request.getActive());
+        Category category = categoryService.findById(request.getCategory().getId());
+        Subcategory subcategory = subCategoryService.findById(request.getSubcategory().getId());
+        product.setSubcategory(subcategory);
+        product.setCategory(category);
         return productRepository.save(product);
     }
 

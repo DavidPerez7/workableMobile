@@ -37,12 +37,13 @@ public class SubCategoryService {
         return subcategoryRepository.save(request);
     }
 
-    public Subcategory update(Long id, Subcategory subcategoryDetails) {
+    public Subcategory update(Long id, Subcategory request) {
         Subcategory subcategory = findById(id);
-        subcategory.setName(subcategoryDetails.getName());
-        subcategory.setDescription(subcategoryDetails.getDescription());
-        subcategory.setActive(subcategoryDetails.getActive());
-        subcategory.setCategory(subcategoryDetails.getCategory());
+        subcategory.setName(request.getName());
+        subcategory.setDescription(request.getDescription());
+        subcategory.setActive(request.getActive());
+        Category category = categoryService.findById(request.getCategory().getId());
+        subcategory.setCategory(category);
         return subcategoryRepository.save(subcategory);
     }
 
